@@ -1224,6 +1224,9 @@ app.post('/api/process-pairings-configured', upload.single('file'), async (req, 
     res.status(500).json({ error: error.message });
   }
 });
+
+// Download endpoint
+app.get('/api/download/:pdfId', (req, res) => {
   const { pdfId } = req.params;
   
   if (!pdfStore[pdfId]) {
