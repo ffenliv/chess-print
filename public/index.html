@@ -410,10 +410,13 @@
         // Show column toggles
         displayColumnToggles(preview);
         
-        // Switch to mapping section
+        // Hide all sections first
         document.getElementById('typeSection').classList.remove('active');
         document.getElementById('uploadSection').classList.remove('active');
         document.getElementById('previewSection').classList.remove('active');
+        document.getElementById('scraperSection').classList.remove('active');
+        
+        // Show mapping section
         document.getElementById('mappingSection').classList.add('active');
         
       } catch (error) {
@@ -542,6 +545,7 @@
       document.getElementById('typeSection').classList.remove('active');
       document.getElementById('uploadSection').classList.add('active');
       document.getElementById('previewSection').classList.remove('active');
+      document.getElementById('mappingSection').classList.remove('active');
       
       selectedFile = null;
       fileInput.value = '';
