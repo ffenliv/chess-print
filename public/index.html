@@ -557,6 +557,13 @@
         return;
       }
       
+      // For pairings, show column mapping first
+      if (currentTableType === 'pairings') {
+        showColumnMapping();
+        return;
+      }
+      
+      // For standings, use existing flow
       const formData = new FormData();
       formData.append('file', selectedFile);
       formData.append('tableType', currentTableType);
