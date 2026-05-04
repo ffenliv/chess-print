@@ -278,7 +278,7 @@
     <div class="success" id="success"></div>
     
     <!-- Table Type Selection -->
-    <div class="section active" id="typeSection">
+    <div class="section" id="typeSection">
       <h2>Select File Type</h2>
       <div class="radio-group">
           <label>
@@ -714,6 +714,12 @@
       const loading = document.querySelector('.loading');
       if (loading) loading.style.display = show ? 'block' : 'none';
     }
+    
+    // Initialize page on load
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Page loaded, showing typeSection');
+      document.getElementById('typeSection').classList.add('active');
+    });
   </script>
 </body>
 </html>
