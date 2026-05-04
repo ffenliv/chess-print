@@ -1145,7 +1145,7 @@ app.post('/api/scrape', async (req, res) => {
 });
 
 // Preview pairings columns and suggest names
-app.post('/api/preview-pairings', (req, res) => {
+app.post('/api/preview-pairings', upload.single('file'), (req, res) => {
   try {
     const buffer = req.file.buffer;
     console.log('3a. Parsing preview...');
