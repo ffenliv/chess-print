@@ -51,11 +51,11 @@
     
     .section {
       margin-bottom: 30px;
-      display: none;
+      display: none !important;
     }
     
     .section.active {
-      display: block;
+      display: block !important;
     }
     
     .form-group {
@@ -385,6 +385,7 @@
     
     // Show preview and column mapping
     async function showColumnMapping() {
+      console.log('showColumnMapping called');
       if (!selectedFile) {
         showError('No file selected');
         return;
@@ -402,7 +403,7 @@
         if (!response.ok) throw new Error('Failed to preview file');
         
         const preview = await response.json();
-        console.log('Preview:', preview);
+        console.log('Preview received:', preview);
         
         // Show preview table
         displayPreviewTable(preview);
@@ -411,15 +412,18 @@
         displayColumnToggles(preview);
         
         // Hide all sections first
+        console.log('Hiding all sections...');
         document.getElementById('typeSection').classList.remove('active');
         document.getElementById('uploadSection').classList.remove('active');
         document.getElementById('previewSection').classList.remove('active');
         document.getElementById('scraperSection').classList.remove('active');
         
         // Show mapping section
+        console.log('Showing mapping section...');
         document.getElementById('mappingSection').classList.add('active');
         
       } catch (error) {
+        console.error('Error in showColumnMapping:', error);
         showError('Error: ' + error.message);
       }
     }
@@ -532,15 +536,18 @@
     
     // Navigation
     function goToTypeSelection() {
+      console.log('goToTypeSelection called');
       document.getElementById('typeSection').classList.add('active');
       document.getElementById('uploadSection').classList.remove('active');
       document.getElementById('previewSection').classList.remove('active');
+      document.getElementById('mappingSection').classList.remove('active');
       clearError();
     }
     
     function goToUpload() {
       const selected = document.querySelector('input[name="tableType"]:checked').value;
       currentTableType = selected;
+      console.log('goToUpload called, type:', currentTableType);
       
       document.getElementById('typeSection').classList.remove('active');
       document.getElementById('uploadSection').classList.add('active');
